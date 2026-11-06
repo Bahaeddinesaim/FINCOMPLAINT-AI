@@ -208,7 +208,7 @@ Aucun score ni résultat expérimental n'est annoncé à ce stade.
 | Responsable | Périmètre proposé |
 | --- | --- |
 | **SAIM Bahaeddine** | Ingestion, exploration, qualité des données, classification, métriques |
-| **Binôme** | Embeddings, FAISS, RAG, interface de démonstration |
+| **OUNI Hazem** | Embeddings, FAISS, RAG, interface de démonstration |
 | **En commun** | Protocole d'évaluation, intégration FastAPI, documentation, tests, soutenance |
 
 La répartition doit être validée par les deux membres ; chacun doit comprendre l'ensemble de la solution.
