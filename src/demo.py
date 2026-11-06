@@ -2,8 +2,8 @@
 
 import argparse
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import joblib
 
@@ -27,8 +27,11 @@ def main():
             result = {"text": args.text, "product": str(model.predict([args.text])[0])}
         else:
             index = joblib.load(args.artifacts / "retriever.joblib")
-            result = (search(index, args.text, args.top_k) if args.action == "search" else
-                      ask(index, args.text, args.top_k, args.generate))
+            result = (
+                search(index, args.text, args.top_k)
+                if args.action == "search"
+                else ask(index, args.text, args.top_k, args.generate)
+            )
     except (OSError, ValueError) as error:
         print(f"Demonstrateur: {error}", file=sys.stderr)
         return 1

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FinComplaint AI | Espace d'analyse</title>
+  <link rel="icon" type="image/png" href="/static/mark.png">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="FinComplaint AI"><img src="/static/mark.png" alt="" width="40" height="40"><span>FinComplaint <b>AI</b></span></a>
+    <div class="nav-label">ESPACE DE TRAVAIL</div>
+    <nav aria-label="Navigation principale">
+      <a href="#analyse" class="active"><span aria-hidden="true">▦</span> Analyse du corpus</a>
+      <a href="#resultats"><span aria-hidden="true">▥</span> Résultats & méthode</a>
+      <a href="/docs" target="_blank" rel="noopener"><span aria-hidden="true">⌘</span> API & documentation <span aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="sidebar-bottom"><span class="status-dot"></span> Modèles locaux <p>SAIM Bahaeddine<br>OUNI Hazem</p><small>Projet académique NLP · CFPB</small></div>
+  </aside>
+  <main>
+    <header class="topbar"><span>Consumer Financial Protection Bureau <span class="divider">/</span> 2025–2026</span><span id="connection" role="status">Connexion…</span></header>
+    <section class="intro" id="analyse"><div><div class="eyebrow">INTELLIGENCE DOCUMENTAIRE</div><h1>Réclamations financières</h1><p>Explorer les récits. Identifier les catégories. Retrouver les preuves.</p></div><a class="text-link" href="https://github.com/Bahaeddinesaim/FINCOMPLAINT-AI" target="_blank" rel="noopener">Voir le projet <span aria-hidden="true">↗</span></a></section>
+    <section class="metrics" aria-label="Indicateurs mesurés">
+      <div><span>Récits · échantillon 2025</span><strong id="corpus-count">—</strong><small>Après nettoyage et déduplication</small></div>
+      <div><span>Macro-F1 · test temporel</span><strong id="f1">—</strong><small id="test-count">Échantillon 2026 borné</small></div>
+      <div><span>Tests automatisés</span><strong id="tests">—</strong><small>Unitaires, intégration et API</small></div>
+      <div><span>Couverture du code src</span><strong id="coverage">—</strong><small>Lignes et branches · pytest</small></div>
+    </section>
+    <section class="workspace" aria-labelledby="workspace-title">
+      <div class="section-heading"><h2 id="workspace-title">Analyser une réclamation</h2><span class="tag">Corpus réel · anglais</span></div>
+      <div class="work-grid">
+        <div class="input-area">
+          <fieldset class="modes"><legend class="sr-only">Type d'analyse</legend><label><input type="radio" name="mode" value="classify" checked><span>Classification</span></label><label><input type="radio" name="mode" value="search"><span>Recherche</span></label><label><input type="radio" name="mode" value="ask"><span>Synthèse RAG</span></label></fieldset>
+          <form id="analysis-form">
+            <label class="field-label" for="query">Texte ou question</label>
+            <textarea id="query" name="query" rows="7" maxlength="10000" required placeholder="I noticed an unauthorized charge on my credit card and the company has not resolved my dispute."></textarea>
+            <div class="input-footer"><span id="characters">0 / 10 000</span><label class="k-control" hidden>Passages <select id="k"><option value="3">3</option><option value="5">5</option></select></label></div>
+            <div class="examples"><span>Exemples</span><button type="button" data-example="I dispute an unauthorized credit card charge and the bank refuses to investigate.">Frais de carte</button><button type="button" data-example="mortgage escrow payment">Paiement immobilier</button><button type="button" data-example="credit report identity theft">Usurpation d'identité</button></div>
+            <button class="primary" id="submit" type="submit"><span id="submit-label">Classifier le texte</span><span aria-hidden="true">→</span></button>
+          </form>
+          <p class="data-note">Traitement local. Les récits du corpus sont des témoignages non vérifiés.</p>
+        </div>
+        <div class="output-area" aria-live="polite" aria-atomic="false"><div class="output-label">RÉSULTAT DE L'ANALYSE <span id="result-state">En attente</span></div><div id="result"><div class="empty-state"><img src="/static/mark.png" alt="" width="64" height="64"><h3>Votre analyse commence ici</h3><p>Classification, passages similaires et réponses accompagnées de leurs sources.</p></div></div></div>
+      </div>
+    </section>
+    <section class="method" id="resultats"><div class="section-heading"><h2>Des résultats traçables</h2><span class="tag neutral">Évaluation reproductible</span></div><div class="method-grid"><article><span class="step">01 / DONNÉES</span><h3>Un protocole temporel</h3><p>Entraînement et validation sur 2025. Test sur un échantillon de 1 000 récits de 2026, sans réentraînement.</p></article><article><span class="step">02 / MODÈLES</span><h3>Comparer avant de choisir</h3><p>TF-IDF et régression logistique comparés à DistilBERT adapté. Recherche MiniLM–FAISS, génération locale FLAN-T5.</p></article><article><span class="step">03 / FIABILITÉ</span><h3>Les sources avant tout</h3><p>Identifiants et extraits consultables. Les brouillons sans références valides sont retenus. La fidélité reste à vérifier.</p></article></div><div class="limits"><strong>Périmètre de la démonstration</strong><p>Échantillons bornés pour CPU, index sémantique limité à 300 documents d'entraînement. La couverture logicielle ne mesure pas la précision des modèles. Aucun conseil financier ou juridique.</p></div></section>
+    <footer>FinComplaint AI <span>Projet NLP · SAIM Bahaeddine & OUNI Hazem</span><a href="https://www.consumerfinance.gov/data-research/consumer-complaints/" target="_blank" rel="noopener">Source des données ↗</a></footer>
+  </main>
+</body></html>

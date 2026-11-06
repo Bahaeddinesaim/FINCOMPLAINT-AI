@@ -1,10 +1,10 @@
-from contextlib import closing
 import json
-from pathlib import Path
 import sqlite3
 import tempfile
 import unittest
-from unittest.mock import patch, MagicMock
+from contextlib import closing
+from pathlib import Path
+from unittest.mock import MagicMock, patch
 
 from src.rag import ask
 from src.retriever import build, search
@@ -17,13 +17,19 @@ class RetrievalTests(unittest.TestCase):
         root = Path(self.directory.name)
         database = root / "data.sqlite"
         with closing(sqlite3.connect(database)) as db:
-            db.execute("CREATE TABLE complaints (complaint_id TEXT, date_received TEXT, product TEXT, "
-                       "issue TEXT, narrative TEXT, source_file TEXT, split TEXT, text_hash TEXT)")
-            db.executemany("INSERT INTO complaints VALUES (?,?,?,?,?,?,?,?)", [
-                ("1", "2025-01-01", "Card", "Fee", "card charge disputed payment", "source.csv", "train", "a"),
-                ("2", "2025-01-01", "Mortgage", "Loan", "mortgage escrow housing loan", "source.csv", "train", "b"),
-                ("3", "2025-02-01", "Card", "Fee", "validationonly card", "source.csv", "validation", "c"),
-                ("4", "2026-01-01", "Card", "Fee", "futureonly card", "future.csv", "test", "d")])
+            db.execute(
+                "CREATE TABLE complaints (complaint_id TEXT, date_received TEXT, product TEXT, "
+                "issue TEXT, narrative TEXT, source_file TEXT, split TEXT, text_hash TEXT)"
+            )
+            db.executemany(
+                "INSERT INTO complaints VALUES (?,?,?,?,?,?,?,?)",
+                [
+                    ("1", "2025-01-01", "Card", "Fee", "card charge disputed payment", "source.csv", "train", "a"),
+                    ("2", "2025-01-01", "Mortgage", "Loan", "mortgage escrow housing loan", "source.csv", "train", "b"),
+                    ("3", "2025-02-01", "Card", "Fee", "validationonly card", "source.csv", "validation", "c"),
+                    ("4", "2026-01-01", "Card", "Fee", "futureonly card", "future.csv", "test", "d"),
+                ],
+            )
             db.commit()
         self.index = build(database, root / "index.joblib")
 

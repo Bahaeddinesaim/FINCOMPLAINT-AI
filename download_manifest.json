@@ -1,0 +1,83 @@
+{
+  "repository": "Bahaeddinesaim/FINCOMPLAINT-AI",
+  "files": [
+    {
+      "file": "CCDB_Export_10_March_2025_through_April_2025.csv",
+      "bytes": 451655817,
+      "sha256": "65150e2fc98494a9bb0c9590d49625dbc2a87e8c356d65fd8bd3516b7aab5626",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_11_May_2025_through_June_2025.csv",
+      "bytes": 481980144,
+      "sha256": "62d7619f724d977c67eae7064d5c7702fa9c96546d0fb9f66756f7b7474be099",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_12_July_2025_through_August_2025.csv",
+      "bytes": 547907319,
+      "sha256": "70a20eaf4b387b1c04fe4f2b43f28761b78e6699e0b5a8add94743bc8ac7b51b",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_13_September_2025_through_October_2025.csv",
+      "bytes": 487091964,
+      "sha256": "a7654586ec18f510d3a6eb606688fe48922706b642b3e821bdadd64f022c5557",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_14_November_2025_through_December_2025.csv",
+      "bytes": 461614129,
+      "sha256": "2d28827ad056f65850c8fb56928c55c3e0c7e8e1b7b1df1b8a3497f2fd32c7d5",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_15_January_2026_through_February_2026.csv",
+      "bytes": 365468739,
+      "sha256": "db88d1ba28756478029a75f4950f148c00cb4c74c826bd204e47c59ad4fbd4c2",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_16_March_2026.csv",
+      "bytes": 218979236,
+      "sha256": "020c5f5d4b134ea0ad394e0a222ef4f08509be5c1ae93036d576e589051de967",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_17_April_2026.csv",
+      "bytes": 222862652,
+      "sha256": "cd61572696826a7e1f8c3b34167ad869244810f5e43549c7b48b43b75bca6aea",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_18_May_2026.csv",
+      "bytes": 219002060,
+      "sha256": "c54d0a3035011706c6efd490b9cf1a234efcf0dcc024921b3a9cc78cf38f7e77",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_19_June_2026.csv",
+      "bytes": 219243368,
+      "sha256": "6d0504c6a33d864b89bcc471aa7d1e72863f900eecba5e6b18724e50e7c104fa",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_20_July_2026.csv",
+      "bytes": 215578945,
+      "sha256": "399b58eb2be7ddaef58c39010eadc7c211bfa49f9fff76e074e386a8d070f1dd",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_21_August_2026.csv",
+      "bytes": 176545406,
+      "sha256": "623c418e4a7bf76d03dd7a2c8d4e89f1ab5a7529a42c7c7e5b3c8d9eb6e20764",
+      "verified": true
+    },
+    {
+      "file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+      "bytes": 491097716,
+      "sha256": "5eb7c3f40966e5e05c3e76982d79c7c5e2650a275dbc4dbaad49a89adc9146ad",
+      "verified": true
+    }
+  ]
+}

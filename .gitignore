@@ -12,3 +12,14 @@ artifacts/*
 reports/*.json
 reports/*.csv
 !reports/demo/
+.runtime/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.models/
+.vscode/
+reports/final/coverage/
+reports/final/pytest.xml
+.playwright-cli/
+output/playwright/

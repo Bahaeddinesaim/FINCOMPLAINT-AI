@@ -21,8 +21,10 @@ def main():
     if not database.is_file():
         parser.error("Corpus absent : relancer sans --skip-ingestion")
     from src.classifier import train
+
     results = train(database, Path("artifacts"), Path("reports"), args.train_limit, args.eval_limit)
     from src.retriever import build
+
     build(database, Path("artifacts/retriever.joblib"), args.index_limit)
     validation = results["splits"]["validation"]
     print(f"Validation: {validation['rows']} textes, macro-F1={validation.get('macro_f1')}")

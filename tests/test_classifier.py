@@ -1,8 +1,8 @@
-from contextlib import closing
-from pathlib import Path
 import sqlite3
 import tempfile
 import unittest
+from contextlib import closing
+from pathlib import Path
 
 import joblib
 
@@ -16,15 +16,18 @@ class ClassifierTests(unittest.TestCase):
             database = root / "corpus.sqlite"
             with closing(sqlite3.connect(database)) as db:
                 db.execute("CREATE TABLE complaints (narrative TEXT, product TEXT, split TEXT, text_hash TEXT)")
-                db.executemany("INSERT INTO complaints VALUES (?,?,?,?)", [
-                    ("card charge disputed payment", "Card", "train", "a"),
-                    ("card charge disputed payment late", "Card", "train", "b"),
-                    ("mortgage servicing housing loan", "Mortgage", "train", "c"),
-                    ("mortgage servicing housing loan late", "Mortgage", "train", "d"),
-                    ("card charge validationonly", "Card", "validation", "e"),
-                    ("mortgage loan validationonly", "Mortgage", "validation", "f"),
-                    ("futureonly futureonly", "Unseen", "test", "g"),
-                ])
+                db.executemany(
+                    "INSERT INTO complaints VALUES (?,?,?,?)",
+                    [
+                        ("card charge disputed payment", "Card", "train", "a"),
+                        ("card charge disputed payment late", "Card", "train", "b"),
+                        ("mortgage servicing housing loan", "Mortgage", "train", "c"),
+                        ("mortgage servicing housing loan late", "Mortgage", "train", "d"),
+                        ("card charge validationonly", "Card", "validation", "e"),
+                        ("mortgage loan validationonly", "Mortgage", "validation", "f"),
+                        ("futureonly futureonly", "Unseen", "test", "g"),
+                    ],
+                )
                 db.commit()
             results = train(database, root / "models", root / "reports", 10, 10)
             self.assertFalse(results["test_evaluated"])

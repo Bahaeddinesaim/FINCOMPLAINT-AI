@@ -1,0 +1,11 @@
+-r requirements-dev.txt
+torch==2.15.0
+transformers==4.57.6
+sentence-transformers==5.7.0
+faiss-cpu==1.15.1
+spacy==3.8.18
+sentencepiece==0.2.3
+fastapi>=0.115,<1
+uvicorn>=0.30,<1
+httpx>=0.27,<1
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
