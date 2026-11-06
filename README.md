@@ -4,7 +4,7 @@
 
 > **Statut :** projet NLP en phase de cadrage et de développement. Les performances et fonctionnalités décrites ci-dessous sont des objectifs, pas des résultats déjà obtenus.
 
-**Auteur du cadrage :** SAIM Bahaeddine  
+**Auteur du cadrage :** SAIM Bahaeddine ; OUNI Hazem 
 **Cadre :** projet académique NLP, réalisé en binôme  
 **Corpus :** Consumer Financial Protection Bureau (CFPB), données 2025–2026
 
