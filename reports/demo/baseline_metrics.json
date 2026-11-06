@@ -1,0 +1,95 @@
+{
+  "train_rows": 2024,
+  "train_limit": 30000,
+  "eval_limit": 10000,
+  "test_evaluated": false,
+  "sampling": "First N text hashes per split; not stratified.",
+  "splits": {
+    "validation": {
+      "rows": 497,
+      "macro_f1": 0.49660427079268304,
+      "report": {
+        "Checking or savings account": {
+          "precision": 0.5714285714285714,
+          "recall": 0.9230769230769231,
+          "f1-score": 0.7058823529411765,
+          "support": 26.0
+        },
+        "Credit card": {
+          "precision": 0.5517241379310345,
+          "recall": 0.8,
+          "f1-score": 0.6530612244897959,
+          "support": 20.0
+        },
+        "Credit reporting or other personal consumer reports": {
+          "precision": 0.9299363057324841,
+          "recall": 0.8690476190476191,
+          "f1-score": 0.8984615384615384,
+          "support": 336.0
+        },
+        "Debt collection": {
+          "precision": 0.5256410256410257,
+          "recall": 0.6612903225806451,
+          "f1-score": 0.5857142857142857,
+          "support": 62.0
+        },
+        "Debt or credit management": {
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.5,
+          "support": 3.0
+        },
+        "Money transfer, virtual currency, or money service": {
+          "precision": 0.8,
+          "recall": 0.47058823529411764,
+          "f1-score": 0.5925925925925926,
+          "support": 17.0
+        },
+        "Mortgage": {
+          "precision": 0.8571428571428571,
+          "recall": 0.6,
+          "f1-score": 0.7058823529411765,
+          "support": 10.0
+        },
+        "Payday loan, title loan, personal loan, or advance loan": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 6.0
+        },
+        "Prepaid card": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 4.0
+        },
+        "Student loan": {
+          "precision": 0.3333333333333333,
+          "recall": 0.5714285714285714,
+          "f1-score": 0.42105263157894735,
+          "support": 7.0
+        },
+        "Vehicle loan or lease": {
+          "precision": 0.5,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.4,
+          "support": 6.0
+        },
+        "accuracy": 0.7927565392354124,
+        "macro avg": {
+          "precision": 0.5517460210190278,
+          "recall": 0.5056453034631402,
+          "f1-score": 0.49660427079268304,
+          "support": 497.0
+        },
+        "weighted avg": {
+          "precision": 0.8077358749223011,
+          "recall": 0.7927565392354124,
+          "f1-score": 0.791935199855468,
+          "support": 497.0
+        }
+      },
+      "unseen_labels": []
+    }
+  }
+}

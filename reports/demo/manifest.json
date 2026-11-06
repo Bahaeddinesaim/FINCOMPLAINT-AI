@@ -1,0 +1,50 @@
+{
+  "scope": "Demonstration sur les premieres lignes de chaque export 2025, non representatif",
+  "rows_per_file": 3000,
+  "inputs": [
+    {
+      "file": "CCDB_Export_10_March_2025_through_April_2025.csv",
+      "original_bytes": 451655817,
+      "rows_read": 3000,
+      "sample_sha256": "fc16b9ab72c165f0b1b0084ae2aa715a03c18d2c24e1d702e200a259cca21ea4"
+    },
+    {
+      "file": "CCDB_Export_11_May_2025_through_June_2025.csv",
+      "original_bytes": 481980144,
+      "rows_read": 3000,
+      "sample_sha256": "6388ca78d5e908cee37f571fdaf9e80484be2494933cc7694cc22bf8d3751736"
+    },
+    {
+      "file": "CCDB_Export_12_July_2025_through_August_2025.csv",
+      "original_bytes": 547907319,
+      "rows_read": 3000,
+      "sample_sha256": "543fa313a786f2b64b3d6839555204077c596244f993b3e4139de9ddd9161e1c"
+    },
+    {
+      "file": "CCDB_Export_13_September_2025_through_October_2025.csv",
+      "original_bytes": 487091964,
+      "rows_read": 3000,
+      "sample_sha256": "a8963657a28b82546b59242c348fd9c5045abc93a8f13f106ac6c5418d7d2ea1"
+    },
+    {
+      "file": "CCDB_Export_14_November_2025_through_December_2025.csv",
+      "original_bytes": 461614129,
+      "rows_read": 3000,
+      "sample_sha256": "334c1161810dbd30067fb1393fb45966df666006ac1e5e400352390f275ee0a6"
+    },
+    {
+      "file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+      "original_bytes": 491097716,
+      "rows_read": 3000,
+      "sample_sha256": "0d563c7273948378f37def6825ab15bcb68300871da1e4cfff2adfa64fc5ad0c"
+    }
+  ],
+  "test_2026_opened": false,
+  "python": "3.11.9",
+  "packages": {
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "joblib": "1.5.3"
+  },
+  "indexed_documents": 2024
+}

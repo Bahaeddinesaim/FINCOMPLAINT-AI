@@ -1,0 +1,58 @@
+[
+  {
+    "query": "credit report identity theft",
+    "mode": "extractive",
+    "answer_preview": "[13293607] I am writing to urgently request the removal of fraudulent accounts on my credit report due to identity theft. The inaccurate information is causing significant harm to my credit, and I expect immediate corrective action.\n\n[15651",
+    "sources": [
+      {
+        "complaint_id": "13293607",
+        "source_file": "CCDB_Export_11_May_2025_through_June_2025.csv",
+        "score": 0.31439027483874515,
+        "product": "Credit reporting or other personal consumer reports"
+      },
+      {
+        "complaint_id": "15651725",
+        "source_file": "CCDB_Export_13_September_2025_through_October_2025.csv",
+        "score": 0.25311449669280306,
+        "product": "Credit reporting or other personal consumer reports"
+      },
+      {
+        "complaint_id": "13260546",
+        "source_file": "CCDB_Export_11_May_2025_through_June_2025.csv",
+        "score": 0.2383056675302151,
+        "product": "Credit reporting or other personal consumer reports"
+      }
+    ]
+  },
+  {
+    "query": "mortgage payment escrow",
+    "mode": "extractive",
+    "answer_preview": "[11334577] On XX/XX/year> I called Carrington Mortgage to request removal of escrow payments from our monthly mortgage payment so that my husband and I could pay these ourselves. They told me to send a written request to a specified address",
+    "sources": [
+      {
+        "complaint_id": "11334577",
+        "source_file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+        "score": 0.31620192166631733,
+        "product": "Mortgage"
+      },
+      {
+        "complaint_id": "11344184",
+        "source_file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+        "score": 0.23166882438839342,
+        "product": "Credit reporting or other personal consumer reports"
+      },
+      {
+        "complaint_id": "11344920",
+        "source_file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+        "score": 0.22794278808468596,
+        "product": "Mortgage"
+      }
+    ]
+  },
+  {
+    "query": "quasar nebula astrophysics",
+    "mode": "abstention",
+    "answer_preview": "Aucun passage pertinent trouve dans cet index.",
+    "sources": []
+  }
+]

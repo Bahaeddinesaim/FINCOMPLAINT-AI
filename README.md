@@ -1,239 +1,212 @@
 # FinComplaint AI
 
-**Classification intelligente, recherche sémantique et analyse augmentée par récupération (RAG) des réclamations financières.**
+Classification des réclamations financières, recherche documentaire et réponses sourcées sur les archives du Consumer Financial Protection Bureau (CFPB).
 
-> **Statut :** projet NLP en phase de cadrage et de développement. Les performances et fonctionnalités décrites ci-dessous sont des objectifs, pas des résultats déjà obtenus.
+**Équipe : SAIM Bahaeddine et OUNI Hazem.** Projet académique NLP en binôme.
 
-**Auteur du cadrage :** SAIM Bahaeddine ; OUNI Hazem 
-**Cadre :** projet académique NLP, réalisé en binôme  
-**Corpus :** Consumer Financial Protection Bureau (CFPB), données 2025–2026
+**Problématique :** comment classer une réclamation par produit financier, retrouver des récits similaires et fournir une réponse dont les sources sont consultables ?
 
-## 1. Présentation
+L'implémentation comprend une baseline CPU TF-IDF + régression logistique, une recherche **lexicale** TF-IDF, un démonstrateur en ligne de commande et quatre notebooks commentés. Le mode de réponse par défaut restitue des extraits sourcés. La génération RAG par modèle local Ollama est facultative et n'a pas été évaluée avec un modèle réel. DistilBERT, BM25, embeddings, FAISS, FastAPI et Streamlit restent des extensions possibles.
 
-FinComplaint AI vise à exploiter les récits de réclamations financières publiés par le **Consumer Financial Protection Bureau (CFPB)** pour :
+## Livrables remis
 
-1. **Classifier** automatiquement une réclamation selon son produit financier (*Product*), puis éventuellement son problème (*Issue*).
-2. **Retrouver** les réclamations similaires à l'aide d'une recherche lexicale et sémantique.
-3. **Synthétiser** les informations pertinentes avec un pipeline **Retrieval-Augmented Generation (RAG)**, en citant les réclamations sources et leurs identifiants.
-
-**Question de recherche :** comment classifier automatiquement les réclamations financières, retrouver des plaintes similaires et produire des synthèses fiables, traçables et fondées sur des documents sources ?
-
-Le système est un outil d'exploration de corpus, **pas** un dispositif de conseil juridique ou financier ni un moteur de résolution automatique des litiges.
-
-## 2. Données
-
-**Source officielle :** [CFPB — Consumer Complaint Database Narratives Archive](https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/)
-
-Le périmètre retenu couvre **2025 et 2026**, conformément à la consigne pédagogique. Le cadrage identifie six exports bimestriels pour 2025 et sept exports pour 2026 (janvier–février, puis mars à août), avec des réclamations reçues jusqu'au **14 août 2026**. La couverture exacte sera vérifiée sur les fichiers téléchargés.
-
-| Période | Usage prévu |
+| Attendu | Fichiers |
 | --- | --- |
-| **2025** | Exploration, entraînement et validation des modèles |
-| **2026** | Test temporel final sur des données ultérieures |
+| Notebooks commentés | [Préparation](notebooks/01_preparation.ipynb), [modèles](notebooks/02_modeles.ipynb), [recherche et RAG](notebooks/03_rag.ipynb), [évaluation](notebooks/04_evaluation.ipynb) |
+| Démonstrateur avec exemples | `src/demo.py`, commandes ci-dessous |
+| Présentation, équipe, données, architecture, installation, résultats, limites | Ce README |
+| Dépendances et configuration | `requirements.txt`, `requirements-notebooks.txt`, `.env.example` |
+| Preuves et métriques | [Résultats](reports/demo/RESULTS.md), `reports/demo/baseline_metrics.json`, `confusion_validation.csv`, `examples.json`, `manifest.json` |
+| Dataset | Liens officiels et procédure ci-dessous |
 
-**Colonnes à contrôler après téléchargement :** `Complaint ID`, `Date received`, `Product`, `Sub-product`, `Issue`, `Sub-issue`, `Consumer complaint narrative` et métadonnées de traitement. Leur disponibilité et leur nom peuvent varier selon les exports.
+Les preuves concernent un échantillon réel explicitement limité. L'évaluation finale de la recherche et de la génération reste à réaliser ; les contrôles fonctionnels ne la remplacent pas.
 
-### Préparation des données
+## Origine et conditions de réutilisation du dataset
 
-- Télécharger et inventorier les exports CFPB.
-- Harmoniser les noms et types de colonnes.
-- Filtrer les dates de réception sur 2025–2026.
-- Conserver les récits narratifs non vides.
-- Dédupliquer par identifiant et rechercher les quasi-doublons.
-- Analyser les longueurs de textes, les valeurs manquantes et le déséquilibre des classes.
-- Construire un échantillon reproductible si le volume le nécessite.
+Source : [CFPB Consumer Complaint Database Narratives Archive](https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/). L'archive annonce des réclamations reçues jusqu'au 14 août 2026. Notre périmètre couvre six exports 2025 et sept exports 2026 (janvier–février, puis mars à août). L'ingestion vérifie les dates effectivement conservées.
 
-**Limites du corpus :** les récits publiés ne représentent pas toutes les plaintes, certains éléments sont masqués, et les catégories peuvent être déséquilibrées. Aucun volume exploitable n'est présumé avant l'analyse exploratoire.
+**Licence et conditions :** la page d'archive n'indique pas de licence dédiée aux récits. Les [mentions officielles CFPB](https://www.consumerfinance.gov/privacy/website-privacy-policy/#legal-notices) distinguent les contenus créés par le Bureau, dans le domaine public, des contenus de tiers pouvant relever d'autres droits. Nous n'attribuons donc pas de licence CC0 ou MIT aux témoignages. La remise peut contenir les liens et instructions, sans joindre les CSV. Les droits du dataset sont distincts de ceux du code. Consulter les conditions officielles avant redistribution.
 
-## 3. Architecture technique cible
+Téléchargement :
+
+1. Ouvrir l'archive officielle et télécharger les **Full Records** de janvier–février 2025 à août 2026.
+2. Extraire les CSV si nécessaire et les placer à la racine du dépôt, en conservant les noms officiels `CCDB_Export_9_…csv` à `CCDB_Export_21_…csv`.
+3. La démonstration rapide nécessite seulement les six exports contenant `2025` dans leur nom. Pour le pipeline complet, vérifier la présence des treize fichiers avant de produire le rapport final : le programme traite les fichiers présents, sans télécharger les absents.
+4. Si les CSV sont obtenus depuis ce dépôt via Git LFS : installer Git LFS et exécuter `git lfs pull`. L'ingestion détecte les pointeurs LFS non téléchargés.
+
+Les [descriptions des champs CFPB](https://www.consumerfinance.gov/complaint/data-use/) documentent les métadonnées. Colonnes requises : `Complaint ID`, `Date received`, `Product`, `Consumer complaint narrative`. `Issue` est conservée lorsqu'elle existe.
+
+Les CSV déjà présents sont suivis par Git LFS et représentent plusieurs Go. Les commandes de démonstration les lisent sans les modifier. Les données dérivées et modèles sont régénérés localement ; les preuves conservent les ID, fichiers sources et aperçus brefs.
+
+## Architecture implémentée
 
 ```mermaid
 flowchart TD
-    A[Exports CFPB 2025–2026] --> B[Ingestion et contrôle qualité — pandas]
-    B --> C[Corpus nettoyé et métadonnées]
-    C --> D[Classification NLP]
-    C --> E[Recherche documentaire]
-    D --> F[TF-IDF + Logistic Regression]
-    D --> G[DistilBERT fine-tuné]
-    E --> H[BM25 — baseline lexicale]
-    E --> I[Sentence Transformers + FAISS]
-    H --> J[Top-k réclamations]
-    I --> J
-    J --> K[LLM + RAG avec citations]
-    F --> L[FastAPI]
-    G --> L
-    J --> L
-    K --> L
-    L --> M[Interface Streamlit]
+    A[CSV CFPB] --> B[Ingestion par blocs et déduplication]
+    B --> C[SQLite : textes, produits, IDs, sources, partitions]
+    C --> D[Train 2025 : TF-IDF et régression logistique]
+    C --> E[Train 2025 : index lexical TF-IDF]
+    D --> F[CLI classify]
+    D --> G[Validation 2025 et rapports]
+    E --> H[CLI search et ask avec extraits sourcés]
+    H --> I[Option explicite : synthèse locale Ollama]
 ```
 
-Le prétraitement pourra utiliser **spaCy** pour la normalisation, la tokenisation et la lemmatisation. Le texte original sera conservé pour les modèles qui en ont besoin.
-
-### Classification
-
-- **Baseline :** TF-IDF + régression logistique.
-- **Modèle avancé :** fine-tuning de DistilBERT.
-- **Cible prioritaire :** `Product`.
-- **Extension éventuelle :** `Issue`, sous réserve d'effectifs suffisants par classe.
-- **Comparaison :** protocole commun et **macro-F1**, avec matrice de confusion et analyse des erreurs.
-
-### Recherche de plaintes similaires
-
-- **Baseline :** BM25.
-- **Recherche vectorielle :** `all-MiniLM-L6-v2` via Sentence Transformers.
-- **Index :** FAISS.
-- **Sortie :** top-k de plaintes pertinentes, accompagnées de leurs identifiants et extraits.
-- **Évaluation :** requêtes annotées manuellement, `Recall@k` et `MRR`.
-
-### Génération RAG
-
-1. Recevoir une question en langage naturel.
-2. Retrouver les passages pertinents dans le corpus.
-3. Fournir ces passages à un LLM avec des instructions de citation.
-4. Générer une synthèse fondée sur les sources, avec **Complaint IDs** et extraits.
-5. Signaler l'insuffisance des preuves lorsqu'une réponse fiable n'est pas possible.
-
-Les expériences compareront notamment **top-k = 3** et **top-k = 5**, ainsi que des questions hors corpus. Le système ne devra pas inventer la résolution d'une réclamation.
-
-## 4. Stack technologique envisagée
-
-| Couche | Technologies |
-| --- | --- |
-| Ingestion et analyse | Python, pandas |
-| Prétraitement NLP | spaCy |
-| Classification baseline | scikit-learn, TF-IDF, Logistic Regression |
-| Classification avancée | Hugging Face Transformers, DistilBERT |
-| Embeddings | Sentence Transformers, `all-MiniLM-L6-v2` |
-| Recherche | BM25, FAISS |
-| Génération | LLM à sélectionner |
-| API | FastAPI |
-| Interface | Streamlit |
-| Évaluation | macro-F1, Recall@k, MRR, fidélité et couverture des citations |
-
-## 5. Structure prévue du dépôt
+- `src/ingestion.py` lit par blocs de 10 000 lignes, conserve le texte original et filtre les dates 2025–2026. Déduplication globale par ID et texte normalisé ; la première occurrence dans l'ordre numérique des exports est conservée.
+- Les textes **2025** sont répartis par hash déterministe : environ 80 % train, 20 % validation. Les textes **2026** sont réservés au test temporel.
+- `src/classifier.py` ajuste le vectoriseur et le classifieur uniquement sur le train. Limites par défaut : 30 000 textes train et 10 000 par partition évaluée, triés par hash, sans stratification.
+- `src/retriever.py` indexe séparément au maximum 10 000 récits train. Les scores sont des similarités cosinus. Chaque résultat contient ID, produit, date, fichier source et extrait de 1 200 caractères maximum.
+- `src/rag.py` restitue les extraits ou les transmet au modèle local avec une consigne de citation. Le contrôle des IDs cités ne garantit pas la fidélité des affirmations.
 
 ```text
-fincomplaint-ai/
-├── data/
-│   ├── raw/                  # Exports originaux CFPB
-│   ├── processed/            # Données harmonisées
-│   └── evaluation/           # Jeux et annotations d'évaluation
-├── notebooks/
-│   ├── 01_ingestion_eda.ipynb
-│   ├── 02_classification.ipynb
-│   ├── 03_rag.ipynb
-│   └── 04_evaluation.ipynb
-├── src/
-│   ├── ingestion.py
-│   ├── preprocessing.py
-│   ├── classifier.py
-│   ├── retriever.py
-│   ├── rag.py
-│   └── metrics.py
-├── api/
-│   └── main.py
-├── app/
-│   └── streamlit_app.py
-├── tests/
-├── requirements.txt
-├── .env.example
-└── README.md
+notebooks/                  Préparation, modèles, RAG, évaluation
+src/                        Ingestion, classification, recherche, réponses, CLI
+scripts/prepare_demo.py      Échantillonnage réel, entraînement, preuves
+scripts/create_notebooks.py  Génération des notebooks (efface leurs sorties si relancé)
+tests/                      Ingestion, séparation des données, recherche, citations
+reports/demo/               Résultats et manifeste versionnables
+data/processed/             SQLite générés, exclus de Git
+artifacts/                  Modèles et index générés, exclus de Git
 ```
 
-Cette arborescence est **proposée** : les fichiers de code et notebooks doivent être créés au fur et à mesure du développement.
+## Installation et configuration
 
-## 6. Installation et exécution (après implémentation)
-
-**Prérequis :** Python et un environnement virtuel ; les versions exactes des dépendances restent à fixer.
+Python **3.11 ou supérieur**. Les versions effectivement utilisées sont consignées dans `reports/demo/manifest.json`.
 
 ```bash
-git clone <URL_DU_DEPOT>
-cd fincomplaint-ai
 python -m venv .venv
 ```
 
-Activer l'environnement :
+Activation Windows PowerShell :
 
-```bash
-# Linux / macOS
-source .venv/bin/activate
-
-# Windows PowerShell
+```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-Lorsque `requirements.txt` aura été renseigné :
+Activation Linux/macOS :
 
 ```bash
-pip install -r requirements.txt
+source .venv/bin/activate
 ```
 
-Après implémentation de l'API et de l'interface :
+Depuis la racine du dépôt :
 
 ```bash
-# Terminal 1 — API
-uvicorn api.main:app --reload
-
-# Terminal 2 — interface
-streamlit run app/streamlit_app.py
+python -m pip install -r requirements.txt
 ```
 
-**Important :** ces commandes correspondent à l'architecture cible. Elles ne garantissent pas un lancement tant que les modules, les dépendances et les configurations n'ont pas été développés.
+Pour ouvrir et réexécuter les notebooks :
 
-## 7. API prévue
+```bash
+python -m pip install -r requirements-notebooks.txt
+jupyter lab
+```
 
-| Endpoint | Fonction |
+**Aucune clé API requise.** `.env.example` décrit la variable facultative `OLLAMA_MODEL`. Les fichiers `.env` ne sont pas chargés automatiquement et sont exclus de Git. Ne jamais publier de clé ou jeton dans le code, les notebooks, leurs sorties ou les rapports.
+
+## Démonstration rapide reproductible
+
+Après téléchargement des six exports 2025 :
+
+```bash
+python -m scripts.prepare_demo
+python -m src.demo classify "I dispute a charge on my credit card" --artifacts artifacts/demo
+python -m src.demo search "credit report identity theft" --artifacts artifacts/demo --top-k 3
+python -m src.demo ask "mortgage payment escrow" --artifacts artifacts/demo
+python -m src.demo ask "quasar nebula astrophysics" --artifacts artifacts/demo
+python -m unittest discover -s tests -v
+```
+
+Le script lit les **3 000 premières lignes de chacun des six exports 2025**, puis applique le nettoyage. Il crée `data/processed/demo.sqlite`, les modèles dans `artifacts/demo/` et les preuves dans `reports/demo/`. Le manifeste enregistre les tailles des fichiers originaux, les empreintes SHA-256 des CSV échantillonnés et les versions. Cette commande remplace les anciens résultats de démonstration, avec des chemins distincts de ceux du pipeline complet.
+
+Exécuter ensuite les notebooks 01 à 04. Le notebook 02 compare la baseline à la classe majoritaire ; le 03 compare les sources pour k=3 et k=5 ; le 04 contrôle les extraits et références. Les sorties sont conservées dans les notebooks remis.
+
+Pour les exécuter automatiquement et enregistrer leurs sorties : `python -m scripts.execute_notebooks` (nécessite `requirements-notebooks.txt`).
+
+Exemples constatés :
+
+| Requête | Mode | Première référence |
+| --- | --- | --- |
+| `credit report identity theft` | Extraits sourcés | ID `13293607`, export 11 (mai–juin 2025) |
+| `mortgage payment escrow` | Extraits sourcés | ID `11334577`, export 9 (janvier–février 2025) |
+| `quasar nebula astrophysics` | Abstention | Aucune source : aucun recouvrement lexical |
+
+La réponse JSON de `ask` contient `mode`, `answer`, `sources` et `citations_valid`. Exemple :
+
+```json
+{
+  "mode": "abstention",
+  "answer": "Aucun passage pertinent trouve dans cet index.",
+  "sources": [],
+  "citations_valid": true
+}
+```
+
+Voir [examples.json](reports/demo/examples.json) pour les aperçus de réponses et références. Pour consulter les récits, retrouver le `Complaint ID` dans le CSV indiqué ou lancer la CLI localement.
+
+### Génération RAG facultative
+
+Installer Ollama séparément, choisir et télécharger un modèle compatible selon ses ressources et sa licence. La CLI utilise le protocole officiel [`POST /api/chat`](https://docs.ollama.com/api/chat) sur `http://localhost:11434`, sans diffusion en continu, avec température 0.
+
+Après démarrage du service et téléchargement du modèle, sous PowerShell :
+
+```powershell
+$env:OLLAMA_MODEL = "nom-du-modele-installe"
+python -m src.demo ask "What problems are reported about mortgage escrow?" --artifacts artifacts/demo --generate
+```
+
+La variable est lue dans le terminal. Sans `--generate`, aucun appel Ollama n'a lieu. La sortie précise le modèle ; `citations_valid: false` signale des IDs absents des sources ou l'absence de citation et exige une correction. Une valeur vraie ne garantit pas la fidélité. Le protocole est testé par simulation ; aucun modèle réel n'a été exécuté dans les preuves remises.
+
+## Pipeline sur le corpus complet
+
+```bash
+python run_pipeline.py
+```
+
+Cette commande prépare tous les `CCDB*.csv` présents, entraîne la baseline et construit l'index. Elle peut être coûteuse sur plusieurs Go. `reports/data_quality.json` contient l'inventaire, les exclusions, dates et distributions.
+
+Pour reprendre après ingestion :
+
+```bash
+python run_pipeline.py --skip-ingestion --train-limit 30000 --eval-limit 10000 --index-limit 10000
+python -m src.demo classify "I dispute a charge on my credit card"
+python -m src.demo search "mortgage escrow"
+python -m src.demo ask "credit report identity theft"
+```
+
+Artefacts : `artifacts/baseline.joblib`, `artifacts/retriever.joblib`. Rapports : `reports/baseline_metrics.json`, `reports/confusion_validation.csv`. **Ne charger que des fichiers Joblib de confiance.** Les modèles sont exclus de Git et régénérables ; aucun modèle volumineux ne doit être joint.
+
+Ouvrir le test 2026 seulement après fixation des choix :
+
+```bash
+python -m src.classifier --evaluate-test
+```
+
+Cette commande réentraîne la baseline et remplace ses rapports et son artefact ; conserver les résultats des expériences à comparer. `--eval-limit` s'applique aussi au test : préciser l'effectif réellement évalué dans le rapport final.
+
+## Résultats principaux et limites
+
+| Mesure sur l'échantillon de démonstration | Valeur |
 | --- | --- |
-| `POST /classify` | Prédire la catégorie d'une réclamation |
-| `POST /search` | Rechercher les plaintes similaires |
-| `POST /ask` | Répondre à une question avec sources et citations |
+| Lignes sources lues | 18 000 |
+| Récits retenus après filtrage et déduplication | 2 521 |
+| Textes train / validation | 2 024 / 497 |
+| Macro-F1 TF-IDF + régression logistique, validation 2025 | **0,4966** |
+| Test temporel 2026 | Non ouvert |
 
-Les schémas JSON, paramètres, erreurs et exemples de réponses seront documentés après implémentation.
+Le détail par classe et la matrice de confusion sont dans `reports/demo/`. Cet échantillon de convenance, sans stratification, ne permet pas de conclure sur le corpus complet. Les versions exactes utilisées sont dans le manifeste ; les dépendances donnent des plages compatibles.
 
-## 8. Protocole d'évaluation
+- Les catégories sont déséquilibrées ; certaines classes ont peu ou pas d'exemples en validation. Les quasi-doublons et l'évolution des labels restent à analyser.
+- Recherche lexicale en anglais, sans embeddings ni reranking. L'index est limité au train et à l'effectif configuré.
+- L'abstention ne couvre que l'absence de recouvrement lexical. Une question hors domaine partageant des mots du corpus peut retourner des résultats ; aucun seuil de pertinence n'est calibré.
+- Le mode extractif restitue des témoignages sans vérifier les faits ni produire de synthèse. Les récits publiés ne représentent pas toutes les réclamations.
+- La génération Ollama n'est pas évaluée. Vérifier les IDs ne remplace pas l'analyse des hallucinations et des citations phrase par phrase.
+- Pour mesurer **Recall@3, Recall@5 et MRR**, constituer un jeu indépendant de questions avec sources pertinentes annotées avant la sélection du moteur. Les exemples illustratifs choisis après consultation de l'index ne sont pas un benchmark indépendant.
+- Pour le RAG, évaluer fidélité, couverture des citations et abstentions ; comparer k=3 et k=5 sur les mêmes questions avec le même modèle.
+- L'évaluation finale sur le corpus complet et le test temporel restent à réaliser. Les sorties sont destinées à l'exploration du corpus et ne constituent pas un conseil financier ou juridique.
 
-| Composant | Métriques / vérifications |
-| --- | --- |
-| Classification | Macro-F1, matrice de confusion, analyse par classe |
-| Recherche | Recall@k, MRR sur requêtes annotées |
-| RAG | Fidélité aux sources, couverture des citations, refus des questions non couvertes |
-| Système | Tests fonctionnels, reproductibilité et documentation |
+## Vérification avant remise
 
-**Prévention des fuites de données :** entraînement et validation sur **2025**, test final réservé à **2026**, contrôle des doublons et quasi-doublons entre périodes. Pour le RAG, utiliser des questions et sources de référence annotées, sans introduire artificiellement les réponses attendues dans l'index d'évaluation.
+Réexécuter la démonstration, les quatre notebooks et les tests. Joindre les preuves correspondant à l'exécution retenue. Les rapports sous `reports/demo/` sont versionnables ; ceux du pipeline complet restent ignorés par défaut. Pour remettre sans CSV, fournir un dossier ou une archive contenant code, notebooks, dépendances, README et rapports, avec les instructions de téléchargement.
 
-Aucun score ni résultat expérimental n'est annoncé à ce stade.
-
-## 9. Organisation du travail (proposition)
-
-| Responsable | Périmètre proposé |
-| --- | --- |
-| **SAIM Bahaeddine** | Ingestion, exploration, qualité des données, classification, métriques |
-| **OUNI Hazem** | Embeddings, FAISS, RAG, interface de démonstration |
-| **En commun** | Protocole d'évaluation, intégration FastAPI, documentation, tests, soutenance |
-
-La répartition doit être validée par les deux membres ; chacun doit comprendre l'ensemble de la solution.
-
-## 10. Roadmap
-
-- [ ] **J1 — Corpus :** téléchargement, inventaire, schéma, distribution des catégories et dates.
-- [ ] **J2 — Classification :** baseline et Transformer entraînés, macro-F1 et matrice de confusion.
-- [ ] **J3 — RAG :** top-k, réponses sourcées, exemples pertinents et hors corpus.
-- [ ] **J4 — Application :** API documentée, interface Streamlit, instructions de lancement.
-- [ ] **J5 — Évaluation finale :** comparaisons, analyse des erreurs, limites, démonstration reproductible.
-
-## 11. Risques et précautions
-
-- **Volume :** privilégier une baseline CPU et un échantillon stratifié documenté avant des expériences plus coûteuses.
-- **Évolution des labels :** vérifier la cohérence des catégories entre 2025 et 2026.
-- **Confidentialité :** ne pas enrichir les données avec des informations personnelles ; vérifier les conditions de publication et de réutilisation du CFPB.
-- **Ressources de calcul :** anticiper le besoin éventuel de GPU pour le fine-tuning.
-- **LLM externe :** choisir un modèle accessible et ne transmettre aucune donnée non autorisée à un service tiers.
-- **Fiabilité :** les plaintes similaires ne constituent pas nécessairement une solution juridique ou financière ; les réponses générées doivent être vérifiables.
-
-## 12. Référence
-
-**Consumer Financial Protection Bureau (CFPB)** — [Consumer Complaint Database Narratives Archive](https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/). Source citée dans le cadrage du **6 novembre 2026**.
-
----
-
-*FinComplaint AI — Projet NLP académique | Cadrage préparé par SAIM Bahaeddine.*
+Ne pas annoncer comme terminés les benchmarks de recherche, l'évaluation humaine des synthèses ou le test temporel tant que leurs résultats ne sont pas effectivement produits.

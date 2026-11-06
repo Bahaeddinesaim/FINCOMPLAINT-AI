@@ -1,0 +1,325 @@
+{
+  "counts": {
+    "rows_read": 18000,
+    "empty_narrative": 14110,
+    "kept": 2521,
+    "duplicate_text": 1369
+  },
+  "files": [
+    {
+      "file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+      "bytes": 1981274,
+      "columns": [
+        "Date received",
+        "Product",
+        "Sub-product",
+        "Issue",
+        "Sub-issue",
+        "Consumer complaint narrative",
+        "Company public response",
+        "Company",
+        "State",
+        "ZIP code",
+        "Tags",
+        "Submitted via",
+        "Date sent to company",
+        "Company response to consumer",
+        "Timely response?",
+        "Complaint ID"
+      ],
+      "counts": {
+        "rows_read": 3000,
+        "empty_narrative": 2142,
+        "kept": 583,
+        "duplicate_text": 275
+      }
+    },
+    {
+      "file": "CCDB_Export_10_March_2025_through_April_2025.csv",
+      "bytes": 1657429,
+      "columns": [
+        "Date received",
+        "Product",
+        "Sub-product",
+        "Issue",
+        "Sub-issue",
+        "Consumer complaint narrative",
+        "Company public response",
+        "Company",
+        "State",
+        "ZIP code",
+        "Tags",
+        "Submitted via",
+        "Date sent to company",
+        "Company response to consumer",
+        "Timely response?",
+        "Complaint ID"
+      ],
+      "counts": {
+        "rows_read": 3000,
+        "empty_narrative": 2287,
+        "kept": 437,
+        "duplicate_text": 276
+      }
+    },
+    {
+      "file": "CCDB_Export_11_May_2025_through_June_2025.csv",
+      "bytes": 2192383,
+      "columns": [
+        "Date received",
+        "Product",
+        "Sub-product",
+        "Issue",
+        "Sub-issue",
+        "Consumer complaint narrative",
+        "Company public response",
+        "Company",
+        "State",
+        "ZIP code",
+        "Tags",
+        "Submitted via",
+        "Date sent to company",
+        "Company response to consumer",
+        "Timely response?",
+        "Complaint ID"
+      ],
+      "counts": {
+        "rows_read": 3000,
+        "kept": 499,
+        "empty_narrative": 2222,
+        "duplicate_text": 279
+      }
+    },
+    {
+      "file": "CCDB_Export_12_July_2025_through_August_2025.csv",
+      "bytes": 1865852,
+      "columns": [
+        "Date received",
+        "Product",
+        "Sub-product",
+        "Issue",
+        "Sub-issue",
+        "Consumer complaint narrative",
+        "Company public response",
+        "Company",
+        "State",
+        "ZIP code",
+        "Tags",
+        "Submitted via",
+        "Date sent to company",
+        "Company response to consumer",
+        "Timely response?",
+        "Complaint ID"
+      ],
+      "counts": {
+        "rows_read": 3000,
+        "empty_narrative": 2277,
+        "kept": 459,
+        "duplicate_text": 264
+      }
+    },
+    {
+      "file": "CCDB_Export_13_September_2025_through_October_2025.csv",
+      "bytes": 1419052,
+      "columns": [
+        "Date received",
+        "Product",
+        "Sub-product",
+        "Issue",
+        "Sub-issue",
+        "Consumer complaint narrative",
+        "Company public response",
+        "Company",
+        "State",
+        "ZIP code",
+        "Tags",
+        "Submitted via",
+        "Date sent to company",
+        "Company response to consumer",
+        "Timely response?",
+        "Complaint ID"
+      ],
+      "counts": {
+        "rows_read": 3000,
+        "empty_narrative": 2595,
+        "duplicate_text": 111,
+        "kept": 294
+      }
+    },
+    {
+      "file": "CCDB_Export_14_November_2025_through_December_2025.csv",
+      "bytes": 1358253,
+      "columns": [
+        "Date received",
+        "Product",
+        "Sub-product",
+        "Issue",
+        "Sub-issue",
+        "Consumer complaint narrative",
+        "Company public response",
+        "Company",
+        "State",
+        "ZIP code",
+        "Tags",
+        "Submitted via",
+        "Date sent to company",
+        "Company response to consumer",
+        "Timely response?",
+        "Complaint ID"
+      ],
+      "counts": {
+        "rows_read": 3000,
+        "empty_narrative": 2587,
+        "kept": 249,
+        "duplicate_text": 164
+      }
+    }
+  ],
+  "date_range": [
+    {
+      "first": "2025-01-01",
+      "last": "2025-12-30"
+    }
+  ],
+  "by_split": [
+    {
+      "split": "train",
+      "count": 2024
+    },
+    {
+      "split": "validation",
+      "count": 497
+    }
+  ],
+  "by_product": [
+    {
+      "product": "Credit reporting or other personal consumer reports",
+      "split": "train",
+      "count": 1336
+    },
+    {
+      "product": "Credit reporting or other personal consumer reports",
+      "split": "validation",
+      "count": 336
+    },
+    {
+      "product": "Debt collection",
+      "split": "train",
+      "count": 235
+    },
+    {
+      "product": "Checking or savings account",
+      "split": "train",
+      "count": 111
+    },
+    {
+      "product": "Credit card",
+      "split": "train",
+      "count": 106
+    },
+    {
+      "product": "Student loan",
+      "split": "train",
+      "count": 64
+    },
+    {
+      "product": "Debt collection",
+      "split": "validation",
+      "count": 62
+    },
+    {
+      "product": "Money transfer, virtual currency, or money service",
+      "split": "train",
+      "count": 55
+    },
+    {
+      "product": "Mortgage",
+      "split": "train",
+      "count": 40
+    },
+    {
+      "product": "Vehicle loan or lease",
+      "split": "train",
+      "count": 34
+    },
+    {
+      "product": "Checking or savings account",
+      "split": "validation",
+      "count": 26
+    },
+    {
+      "product": "Credit card",
+      "split": "validation",
+      "count": 20
+    },
+    {
+      "product": "Prepaid card",
+      "split": "train",
+      "count": 18
+    },
+    {
+      "product": "Money transfer, virtual currency, or money service",
+      "split": "validation",
+      "count": 17
+    },
+    {
+      "product": "Payday loan, title loan, personal loan, or advance loan",
+      "split": "train",
+      "count": 15
+    },
+    {
+      "product": "Debt or credit management",
+      "split": "train",
+      "count": 10
+    },
+    {
+      "product": "Mortgage",
+      "split": "validation",
+      "count": 10
+    },
+    {
+      "product": "Student loan",
+      "split": "validation",
+      "count": 7
+    },
+    {
+      "product": "Payday loan, title loan, personal loan, or advance loan",
+      "split": "validation",
+      "count": 6
+    },
+    {
+      "product": "Vehicle loan or lease",
+      "split": "validation",
+      "count": 6
+    },
+    {
+      "product": "Prepaid card",
+      "split": "validation",
+      "count": 4
+    },
+    {
+      "product": "Debt or credit management",
+      "split": "validation",
+      "count": 3
+    }
+  ],
+  "lengths": [
+    {
+      "split": "train",
+      "min": 51,
+      "mean": 1331.23814229249,
+      "max": 35581
+    },
+    {
+      "split": "validation",
+      "min": 51,
+      "mean": 1448.764587525151,
+      "max": 34802
+    }
+  ],
+  "limitations": [
+    "Quasi-doublons non detectes; seuls ID et textes normalises identiques sont dedupliques.",
+    "La premiere occurrence dans l'ordre numerique des exports est conservee.",
+    "Validation deterministe par hash du texte, environ 20 % de 2025."
+  ]
+}
