@@ -1,0 +1,5 @@
+-r requirements-notebooks.txt
+pytest>=8,<10
+pytest-cov>=6,<8
+ruff>=0.12,<1
+requests>=2.32,<3

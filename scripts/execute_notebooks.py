@@ -2,9 +2,9 @@
 
 import asyncio
 import os
-from pathlib import Path
 import sys
 import tempfile
+from pathlib import Path
 
 import nbformat
 from nbclient import NotebookClient
@@ -20,8 +20,9 @@ def main():
             for path in sorted(Path("notebooks").glob("*.ipynb")):
                 print(f"Execution : {path}", flush=True)
                 notebook = nbformat.read(path, as_version=4)
-                NotebookClient(notebook, timeout=180, kernel_name="python3",
-                               resources={"metadata": {"path": str(Path.cwd())}}).execute()
+                NotebookClient(
+                    notebook, timeout=180, kernel_name="python3", resources={"metadata": {"path": str(Path.cwd())}}
+                ).execute()
                 nbformat.write(notebook, path)
         finally:
             if previous is None:

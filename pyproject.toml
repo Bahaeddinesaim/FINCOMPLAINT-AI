@@ -1,0 +1,18 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-p no:dash --color=no"
+markers = ["integration: pipeline integration across CSV SQLite and models"]
+
+[tool.ruff]
+line-length = 120
+extend-exclude = [".models", ".runtime"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = ["E402"]
+
+[tool.coverage.run]
+source = ["src"]

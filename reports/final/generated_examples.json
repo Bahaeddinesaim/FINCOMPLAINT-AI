@@ -1,0 +1,127 @@
+[
+  {
+    "question": "What problems are reported about mortgage escrow payments?",
+    "k": 3,
+    "mode": "abstention_invalid_citations",
+    "answer": "The generated draft has no valid citations; inspect the retrieved evidence.",
+    "generated_draft": "egregious mistake",
+    "sources": [
+      {
+        "complaint_id": "11344920",
+        "product": "Mortgage",
+        "source_file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+        "date_received": "2025-01-01",
+        "excerpt": "company is currently closed, and I am unable to get this resolved but am doing this as a precaution as my escrow account is now in the negative by - {$6900.00}. This will affect me negatively. I only realized this when I went online to make our monthly mortgage payment yesterday XX/XX/year>, and noticed this egregious mistake. I will be contacting them tomorrow when they are open, but this obviously needs to be taken seriously, and I wanted to inform",
+        "offset_words": 65,
+        "score": 0.6724225282669067
+      },
+      {
+        "complaint_id": "11344920",
+        "product": "Mortgage",
+        "source_file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+        "date_received": "2025-01-01",
+        "excerpt": "On the XXXX of XX/XX/year> my loan servicing company made payment of my property taxes of {$7200.00}. On the same day ( XX/XX/year> ) they made an additional payment from MY escrow account in the amount of {$8800.00} also for property taxes but for someone else, this second amount of {$8800.00} is not mine. I have checked multiple resources to confirm this. My loan servicing company is currently closed, and I am unable to get this resolved but am doing",
+        "offset_words": 0,
+        "score": 0.4709847569465637
+      },
+      {
+        "complaint_id": "11345147",
+        "product": "Credit reporting or other personal consumer reports",
+        "source_file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+        "date_received": "2025-01-01",
+        "excerpt": "back and forth with a customer service rep who told me that my credit report was accurate, the customer service rep hung up on me. I called back and spoke to XXXX who expressed understanding that I wanted XXXX XXXX to be added back to my account and that a ticket was placed to have it addressed. On XX/XX/XXXX I again called XXXX for follow up to see if anything changed. I was informed data mortgage did not send any",
+        "offset_words": 130,
+        "score": 0.4604361057281494
+      }
+    ],
+    "citations_valid": false,
+    "warning": "Draft withheld because its references could not be validated."
+  },
+  {
+    "question": "What problems are reported about mortgage escrow payments?",
+    "k": 5,
+    "mode": "flan-t5",
+    "answer": "[11344920] company is currently closed, and I am unable to get this resolved but am doing this as a precaution as my escrow account is now in the negative by - $6900.00. This will affect me negatively. I only realized this when I went online to make our monthly mortgage payment yesterday XX/XX/year>, and noticed this egregious mistake. I will be contacting them tomorrow",
+    "sources": [
+      {
+        "complaint_id": "11344920",
+        "product": "Mortgage",
+        "source_file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+        "date_received": "2025-01-01",
+        "excerpt": "company is currently closed, and I am unable to get this resolved but am doing this as a precaution as my escrow account is now in the negative by - {$6900.00}. This will affect me negatively. I only realized this when I went online to make our monthly mortgage payment yesterday XX/XX/year>, and noticed this egregious mistake. I will be contacting them tomorrow when they are open, but this obviously needs to be taken seriously, and I wanted to inform",
+        "offset_words": 65,
+        "score": 0.6724225282669067
+      },
+      {
+        "complaint_id": "11344920",
+        "product": "Mortgage",
+        "source_file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+        "date_received": "2025-01-01",
+        "excerpt": "On the XXXX of XX/XX/year> my loan servicing company made payment of my property taxes of {$7200.00}. On the same day ( XX/XX/year> ) they made an additional payment from MY escrow account in the amount of {$8800.00} also for property taxes but for someone else, this second amount of {$8800.00} is not mine. I have checked multiple resources to confirm this. My loan servicing company is currently closed, and I am unable to get this resolved but am doing",
+        "offset_words": 0,
+        "score": 0.4709847569465637
+      },
+      {
+        "complaint_id": "11345147",
+        "product": "Credit reporting or other personal consumer reports",
+        "source_file": "CCDB_Export_9_January_2025_through_February_2025.csv",
+        "date_received": "2025-01-01",
+        "excerpt": "back and forth with a customer service rep who told me that my credit report was accurate, the customer service rep hung up on me. I called back and spoke to XXXX who expressed understanding that I wanted XXXX XXXX to be added back to my account and that a ticket was placed to have it addressed. On XX/XX/XXXX I again called XXXX for follow up to see if anything changed. I was informed data mortgage did not send any",
+        "offset_words": 130,
+        "score": 0.4604361057281494
+      },
+      {
+        "complaint_id": "13260809",
+        "product": "Checking or savings account",
+        "source_file": "CCDB_Export_11_May_2025_through_June_2025.csv",
+        "date_received": "2025-05-01",
+        "excerpt": "representative I spoke with was dismissive and even criticized me for having an upset tone, despite me being extremely frustrated by the situation they caused. The bank has not provided me with any compensation for the inconvenience or negative impact on my finances. Impact : My account was overdrawn due to this error, and I am now forced to transfer money from my savings to cover the shortfall until this issue is resolved. I have been given no timeframe for",
+        "offset_words": 195,
+        "score": 0.45769479870796204
+      },
+      {
+        "complaint_id": "12561293",
+        "product": "Credit reporting or other personal consumer reports",
+        "source_file": "CCDB_Export_10_March_2025_through_April_2025.csv",
+        "date_received": "2025-03-19",
+        "excerpt": "If I do not receive a satisfactory resolution, I will escalate my complaint to the Consumer Financial Protection Bureau ( CFPB ) and consider legal remedies. Sincerely, XXXX XXXX",
+        "offset_words": 325,
+        "score": 0.4397294819355011
+      }
+    ],
+    "citations_valid": true,
+    "warning": "Retrieved evidence is shown separately. Verify each generated claim manually."
+  },
+  {
+    "question": "Who won the football world cup?",
+    "k": 3,
+    "mode": "abstention",
+    "answer": "Insufficient evidence in this corpus.",
+    "sources": [],
+    "citations_valid": true
+  },
+  {
+    "question": "Who won the football world cup?",
+    "k": 5,
+    "mode": "abstention",
+    "answer": "Insufficient evidence in this corpus.",
+    "sources": [],
+    "citations_valid": true
+  },
+  {
+    "question": "How do I bake a chocolate cake?",
+    "k": 3,
+    "mode": "abstention",
+    "answer": "Insufficient evidence in this corpus.",
+    "sources": [],
+    "citations_valid": true
+  },
+  {
+    "question": "How do I bake a chocolate cake?",
+    "k": 5,
+    "mode": "abstention",
+    "answer": "Insufficient evidence in this corpus.",
+    "sources": [],
+    "citations_valid": true
+  }
+]
